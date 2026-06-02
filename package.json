@@ -1,6 +1,6 @@
 {
   "name": "osv-depguard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Scan npm dependencies for vulnerabilities via OSV.dev + AI summaries",
   "type": "module",
   "bin": {

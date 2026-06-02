@@ -32,7 +32,7 @@ export function buildProgram(argv = process.argv) {
   program
     .name("depguard")
     .description("Deterministic hybrid dependency vulnerability scanner")
-    .version("1.0.0")
+    .version("1.1.0")
     .argument("[path]", "Directory containing package-lock.json", ".")
     .option("--no-dev", "Skip devDependencies")
     .option(
