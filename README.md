@@ -60,6 +60,35 @@ package-lock.json
   cli-table3 + chalk  ─────►  colour-coded terminal table
 ```
 
+## Project structure
+
+```
+depguard.js          # thin executable entry point
+src/
+  cli.js             # argument parsing + pipeline orchestration
+  lockfile.js        # package-lock.json discovery, loading, extraction
+  osv.js             # OSV.dev querying + vulnerability list building
+  severity.js        # severity extraction, ranking, colouring
+  ai.js              # Anthropic enrichment + merge
+  renderer.js        # table, summary, advisory-link rendering
+  gitignore.js       # .env safety check
+  constants.js       # shared constants
+  utils.js           # safe JSON parsing + validation helpers
+  logger.js          # standardized logging
+tests/               # vitest unit tests
+```
+
+## Development
+
+```bash
+npm test            # run the test suite
+npm run test:watch  # watch mode
+npm run coverage    # run with a coverage report (≥80% enforced)
+```
+
+Network and AI calls accept an injectable `fetch`, so `osv.js` and `ai.js`
+are unit-tested without hitting real endpoints.
+
 ## Security notes
 
 - Never hardcode your API key. Use `.env` via dotenv.
