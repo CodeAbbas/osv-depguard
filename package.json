@@ -4,7 +4,7 @@
   "description": "Scan npm dependencies for vulnerabilities via OSV.dev + AI summaries",
   "type": "module",
   "bin": {
-    "osv-depguard": "./depguard.js"
+    "osv-depguard": "depguard.js"
   },
   "scripts": {
     "test": "vitest run",
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/CodeAbbas/osv-depguard",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CodeAbbas/osv-depguard.git"
+    "url": "git+https://github.com/CodeAbbas/osv-depguard.git"
   },
   "bugs": {
     "url": "https://github.com/CodeAbbas/osv-depguard/issues"
@@ -36,7 +36,8 @@
     "cli-table3": "^0.6.5",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5",
-    "ora": "^8.0.1"
+    "ora": "^8.0.1",
+    "osv-depguard": "^1.1.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.8",
