@@ -100,25 +100,69 @@ osv-depguard
 
 Sign up at [console.anthropic.com](https://console.anthropic.com/) and create an API key.
 
-### 2. Add it to a `.env` file in your project root
+### 2. Set up the API key
+
+Choose whichever method fits your workflow:
+
+#### Option A — Shell environment variable (recommended for global install)
+
+This sets the key once and it works from any directory — no `.env` file needed.
+
+**Mac / Linux** — add to your `~/.bashrc`, `~/.zshrc`, or `~/.profile`:
 
 ```bash
-echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
+export ANTHROPIC_API_KEY="sk-ant-..."
 ```
 
-Or create the file manually:
+Then reload your shell:
+
+```bash
+source ~/.bashrc   # or source ~/.zshrc
+```
+
+**Windows (PowerShell)** — add to your PowerShell profile:
+
+```powershell
+# Open your profile file (creates it if it doesn't exist)
+if (!(Test-Path -Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }
+notepad $PROFILE
+
+# Add this line, save, and restart the terminal
+$env:ANTHROPIC_API_KEY = "sk-ant-..."
+```
+
+**Windows (System-wide)** — set it permanently via System Settings:
+
+```
+Settings → System → About → Advanced system settings
+→ Environment Variables → New (under User variables)
+→ Variable name: ANTHROPIC_API_KEY
+→ Variable value: sk-ant-...
+```
+
+You can verify it's set by running:
+
+```bash
+# Mac / Linux
+echo $ANTHROPIC_API_KEY
+
+# Windows (PowerShell)
+echo $env:ANTHROPIC_API_KEY
+```
+
+#### Option B — `.env` file (recommended for per-project or local install)
+
+Create a `.env` file in your project root:
 
 ```
 ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-### 3. Gitignore it immediately
+Then gitignore it immediately:
 
 ```bash
 echo ".env" >> .gitignore
 ```
-
-> ⚠️ OSV-DepGuard will warn you at startup if `.env` is missing from `.gitignore`. Never commit your API key.
 
 A safe `.env.example` template is included in the repo — copy it as a starting point:
 
@@ -126,6 +170,10 @@ A safe `.env.example` template is included in the repo — copy it as a starting
 cp .env.example .env
 # then fill in your real key
 ```
+
+> ⚠️ **Important:** The `.env` file is read from the directory you run the command in. If you use a global install and scan different projects, use Option A instead — otherwise you'd need a `.env` in every project folder.
+
+> ⚠️ OSV-DepGuard will warn you at startup if a `.env` file is present but not listed in `.gitignore`. Never commit your API key.
 
 ---
 
@@ -193,8 +241,8 @@ osv-depguard --json | jq 'group_by(.severity) | map({severity: .[0].severity, co
 
 ## Security notes
 
-- Never hardcode your API key — always use `.env` via dotenv.
-- Always add `.env` to `.gitignore` before your first commit.
+- Never hardcode your API key — use a shell environment variable or `.env` via dotenv.
+- If using a `.env` file, always add it to `.gitignore` before committing.
 - OSV.dev is a public API — no key required. Only package names and exact versions are sent.
 - The AI has no web search access — it only interprets verified OSV data, so it cannot fabricate vulnerabilities.
 
