@@ -1,6 +1,6 @@
 {
   "name": "osv-depguard",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Scan npm dependencies for vulnerabilities via OSV.dev + AI summaries",
   "type": "module",
   "bin": {
@@ -36,8 +36,7 @@
     "cli-table3": "^0.6.5",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5",
-    "ora": "^8.0.1",
-    "osv-depguard": "^1.1.0"
+    "ora": "^8.0.1"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.1.8",
